@@ -1,9 +1,41 @@
 ---
 name: home
 url: /
+controller: RecipesController
 ---
+	
+<header class="page-header">
+	<div class="row">
+		<div class="small-12 medium-4 large-3 columns">
+			<h1>{{page.title}}</h1>
+		</div>
+		<div class="small-12 medium-8 large-9 columns">
+			<div class="search">
+				<i class="fa fa-fw fa-search"></i>
+				<angucomplete id="ex1"
+              placeholder="Search recipes..."
+              pause="100"
+              selectedobject="selectedRecipe"
+              localdata="recipes"
+              searchfields="name"
+              titlefield="name"
+              minlength="1"
+              inputclass=""/>
+			</div>
+		</div>
+	</div>
+</header>
 
-<div class="grid-container">
-  <h1>Welcome to Foundation for Apps!</h1>
-  <p class="lead">This is version <strong>1.1 Weisshorn</strong>.</p>
+{{selectedRecipe}}
+
+<div class="row">
+	<div class="small-12 columns">
+		<table>
+			<tr ng-repeat="recipe in recipes | orderBy: 'name'">
+				<td>
+					<a ui-sref="recipe({id:recipe.$id})" href="#">{{recipe.name}}</a>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

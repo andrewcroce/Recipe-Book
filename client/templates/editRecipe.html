@@ -1,0 +1,87 @@
+---
+name: editRecipe
+url: /edit/:id
+controller: EditRecipeController
+---
+
+<header class="page-header">
+  <div class="row">
+    <div class="small-12 columns">
+      <h1>Edit Recipe: <small>{{recipe.name}}</small></h1>
+    </div>
+  </div>
+</header>
+  
+<form ng-submit="addRecipe()">
+  
+  <section class="row">
+    <div class="small-12 medium-9 large-10 columns">
+      <label class="grid-content">
+        <h4>Name</h4>
+        <input type="text" ng-model="recipe.name">
+      </label>
+    </div>
+    <div class="small-12 medium-3 large-2 columns">
+      <label>
+        <h4>Yield</h4>
+        <input type="text" ng-model="recipe.yield">
+      </label>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="small-12 columns">
+      <h4 class="grid-content">Ingredients</h4>
+      <div ng-repeat="ingredient in recipe.ingredients track by $index">
+        <div class="row" id="ingredient-{{$index}}">
+
+          <div class="small-4 medium-3 large-2 columns">
+            <div class="input-group">
+              <label class="input-group-label">qty</label>
+              <input value="" id="{{ingredient.key}}-quantity" ng-model="ingredient.quantity" class="input-group-field" type="text" value="{{ingredient.quantity}}">
+            </div>
+          </div>
+          
+          <div class="small-8 medium-9 large-8 columns">
+            <div class="input-group">
+              <label class="input-group-label">of</label>
+              <input id="{{ingredient.key}}-name" ng-model="ingredient.name" class="input-group-field" type="text" value="{{ingredient.name}}">
+              <div class="input-group-button">
+                <button ng-show="{{$index}} > 0" ng-click="removeIngredient(ingredient.key)" class="button">
+                  <i class="fa fa-fw fa-close"><span class="show-for-sr">Remove</span></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="small-12 medium-12 large-2 columns">
+            <input type="hidden" ng-model="ingredient.key" value="{{ingredient.key}}">
+            <a class="hollow button" ng-show="{{$index}} == recipe.ingredients.length - 1" ng-click="addIngredient()">
+              <i class="fa fa-fw fa-plus"></i>
+              Add Another
+            </a>
+          </div>
+        
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="small-12 medium-10 large-8 columns">
+      <h4>Instructions</h4>
+      <textarea auto-expand-height value="" rows="5" ng-model="recipe.instructions"> </textarea>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="small-12 columns">
+      <a class="button" ng-click="doneEditing()">
+        <i class="fa fa-fw fa-check"></i>
+        Done Editing
+      </a>
+    </div>
+  </section>
+
+</form>

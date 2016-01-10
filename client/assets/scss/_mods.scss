@@ -1,0 +1,79 @@
+// LAYOUT
+
+.view-container {
+	padding: 0 $small-gutter/2;
+	@include breakpoint(medium up){
+		padding: 0 $medium-gutter/2;
+	}
+	@include breakpoint(large up){
+		padding: 0 $large-gutter/2;
+	}
+}
+
+section {
+	margin: $medium-gutter 0;
+	@include breakpoint(large up){
+		margin: $large-gutter 0;
+	}
+}
+
+// TOP BAR
+.top-bar {
+	.top-bar-right {
+		width: auto!important;
+		.button {
+			margin: 0;
+			border: 1px solid $white;
+		}
+	}
+	.top-bar-left {
+		width: auto!important;
+	}
+}
+
+// PAGE HEADER
+.page-header {
+	margin-top: $large-gutter;
+	h1 {
+		font-weight: 700;
+	}
+}
+
+
+// SEARCH
+.search {
+	position: relative;
+	margin-top: $small-gutter;
+	i {
+		position: absolute;
+		right: $small-gutter;
+		top: $small-gutter;
+		z-index: 2;
+		color: $primary-color;
+	}
+}
+
+// PARAGRAPHS
+p {
+	max-width: 50em;
+}
+
+// TABLES
+table {
+	width: 100%;
+	tr {
+		td {
+			width: 100%;
+			&:first-child {
+				width: auto;
+				white-space: nowrap;
+			}
+		}
+	}
+}
+
+// TEXTAREA
+textarea{
+    overflow: hidden;
+    padding: 4px;
+}

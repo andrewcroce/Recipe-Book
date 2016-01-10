@@ -1,0 +1,39 @@
+---
+name: recipe
+url: /recipe/:id
+controller: RecipeController
+---
+
+<header class="page-header">
+	<div class="row">
+	  <div class="small-12 columns clearfix">
+	    <h1 class="float-left">{{recipe.name}}</h1>
+	    <a class="button float-right" ui-sref="editRecipe({id:recipe.$id})" href="#"><i class="fa fa-fw fa-pencil"></i> Edit Recipe</a>
+	  </div>
+	</div>
+</header>
+
+<section class="row">
+  <div class="small-12 columns">
+    <h4>Yields: <small>{{recipe.yield}}</small></h4>
+  </div>
+</section>
+
+<section class="row">
+	<div class="small-12 columns">
+    <h4>Ingredients</h4>
+    <table>
+    	<tr ng-repeat="ingredient in recipe.ingredients">
+    		<td>{{ingredient.quantity}} </td>
+    		<td>{{ingredient.name}}</td>
+    	</tr>
+    </table>
+  </div>
+</section>
+
+<section class="row">
+	<div class="small-12 columns">
+    <h4>Instructions</h4>
+    <p ng-repeat="paragraph in recipe.instructions|SplitTextByLines track by $index">{{paragraph}}</p>
+  </div>
+</section>
